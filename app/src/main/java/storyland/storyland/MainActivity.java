@@ -1,4 +1,4 @@
-package com.example.guillaume.fairland;
+package storyland.storyland;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;

@@ -1,4 +1,4 @@
-package com.example.guillaume.fairland;
+package storyland.storyland;
 
 import org.junit.Test;
 

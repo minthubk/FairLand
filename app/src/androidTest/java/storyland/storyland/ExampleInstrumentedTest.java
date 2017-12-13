@@ -1,4 +1,4 @@
-package com.example.guillaume.fairland;
+package storyland.storyland;
 
 import android.content.Context;
 import android.support.test.InstrumentationRegistry;
@@ -21,6 +21,6 @@ public class ExampleInstrumentedTest {
         // Context of the app under test.
         Context appContext = InstrumentationRegistry.getTargetContext();
 
-        assertEquals("com.example.guillaume.fairland", appContext.getPackageName());
+        assertEquals("storyland.storyland", appContext.getPackageName());
     }
 }
