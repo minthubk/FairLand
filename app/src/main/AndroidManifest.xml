@@ -20,8 +20,8 @@
             </meta-data>
         </provider>
         <activity
-            android:name=".ListeVideoActivity"
-            android:screenOrientation="sensor">
+            android:name=".CameraActivity"
+            android:screenOrientation="sensorLandscape"><!-- Sensor destroy camera orientation-->
             <!-- configure this activity to use landscape orientation -->
 
             <intent-filter>
