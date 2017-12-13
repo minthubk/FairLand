@@ -22,9 +22,11 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import android.view.*;
+
 public class CameraActivity extends AppCompatActivity {
 
-    private static final String TAG = "Video";
+    private static final String TAG = "VideoAR_storyLand";
     private Camera mCamera;
     private CameraPreview mPreview;
 
@@ -55,6 +57,8 @@ public class CameraActivity extends AppCompatActivity {
         }
 
         mCamera.setParameters(params);
+
+        //Camera.setDisplayOrientation(getCorrectCameraOrientation(mCamera.info , mCamera));
 
         final Button captureButton = (Button) findViewById(R.id.button_capture);
         captureButton.setOnClickListener(
@@ -232,4 +236,39 @@ public class CameraActivity extends AppCompatActivity {
             mCamera = null;
         }
     }
+
+  /*  public int getCorrectCameraOrientation(Camera camera) {
+
+        int rotation = getResources().getConfiguration().orientation;
+        int degrees = 0;
+
+        switch(rotation){
+            case Surface.ROTATION_0:
+                degrees = 0;
+                break;
+
+            case Surface.ROTATION_90:
+                degrees = 90;
+                break;
+
+            case Surface.ROTATION_180:
+                degrees = 180;
+                break;
+
+            case Surface.ROTATION_270:
+                degrees = 270;
+                break;
+
+        }
+
+        int result;
+        if(info.facing==Camera.CameraInfo.CAMERA_FACING_FRONT){
+            result = (info.orientation + degrees) % 360;
+            result = (360-result)%360;
+        }else{
+            result = (info.orientation-degrees + 360) % 360;
+        }
+
+        return result;
+    }*/
 }

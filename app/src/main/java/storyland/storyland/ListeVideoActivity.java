@@ -44,12 +44,14 @@ public class ListeVideoActivity extends AppCompatActivity {
         if(files.length > 0) {
             for (int i = 0; i < files.length; i++) {
                 row = new TableRow(this); // création d'une nouvelle ligne
+                row.setMinimumHeight(100);
+                row.setGravity(Gravity.CENTER_VERTICAL);
 
                 tv1 = new TextView(this); // création cellule
                 tv1.setText(files[i].getName()); // ajout du texte
                 tv1.setGravity(Gravity.LEFT); // centrage dans la cellule
                 // adaptation de la largeur de colonne à l'écran :
-                tv1.setLayoutParams(new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
+                tv1.setLayoutParams(new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 3));
 
                 // idem 2ème cellule
                 tv2 = new TextView(this);
@@ -72,11 +74,9 @@ public class ListeVideoActivity extends AppCompatActivity {
                 table.addView(row);
             }
         }else{
-            /*row = new TableRow(this); // création d'une nouvelle ligne
+            row = new TableRow(this); // création d'une nouvelle ligne
             tv1 = new TextView(this); // création cellule
             tv1.setText("Aucune Video");
-            tv2 = new TextView(this); // création cellule
-            tv3 = new TextView(this); // création cellule*/
         }
     }
 }
