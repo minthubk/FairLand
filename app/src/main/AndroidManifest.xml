@@ -36,6 +36,9 @@
         <activity android:name=".EditionVideoActivity">
 
         </activity>
+        <activity android:name=".AndroidVideoPlayer">
+
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.CAMERA" />

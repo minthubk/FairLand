@@ -12,7 +12,8 @@
         xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-    android:weightSum="4"> <!-- nombre de colonnes -->
+    android:weightSum="4"
+        android:orientation="vertical"> <!-- nombre de colonnes -->
 
         <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/scrollView1"
