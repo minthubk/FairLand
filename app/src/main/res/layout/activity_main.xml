@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="storyland.storyland.MainActivity"
-    android:background="@color/orangeglo">
+    android:background="@color/orange">
 
     <ImageView
         android:id="@+id/iv_background"
