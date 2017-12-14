@@ -97,6 +97,19 @@ public class ListeVideoActivity extends BaseActivity {
                         startActivity(intent);
                     }
                 });
+                tv3.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                        // It's index
+                        String text = ((TextView)((TableRow)view.getParent()).getChildAt(0)).getText().toString();
+                        Intent intent = new Intent(ListeVideoActivity.this, ListeVideoActivity.class);
+
+                        File file = new File(Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_PICTURES)+"/StoryLand/"+text); //Your id
+                        if(file != null){
+                            file.delete();
+                        }
+                        startActivity(intent);
+                    }
+                });
 
 
 
