@@ -9,5 +9,6 @@ public class EditionVideoActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         setContentView(R.layout.activity_edition);
         super.onCreate(savedInstanceState);
+        setTitle("Edition Vidéos");
     }
 }

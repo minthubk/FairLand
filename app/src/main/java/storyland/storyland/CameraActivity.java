@@ -44,6 +44,8 @@ public class CameraActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+        setTitle("Caméra");
+
 
         // Create an instance of Camera
         mCamera = getCameraInstance();
