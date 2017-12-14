@@ -34,7 +34,7 @@ public class CameraActivity extends BaseActivity {
     private MediaRecorder mMediaRecorder;
     public static final int MEDIA_TYPE_IMAGE = 1;
     public static final int MEDIA_TYPE_VIDEO = 2;
-
+    public int isNegatif = 0;
     private boolean isRecording = false;
 
 
@@ -69,15 +69,15 @@ public class CameraActivity extends BaseActivity {
                         if (isRecording) {
                             // stop recording and release camera
                             mMediaRecorder.stop();  // stop the recording
-                            releaseMediaRecorder(); // release the MediaRecorder object
-                            mCamera.lock();         // take camera access back from MediaRecorder
+                            releaseMediaRecorder();
+                            // release the MediaRecorder object
+                            mCamera.lock();// take camera access back from MediaRecorder
                             captureButton.setText("Démarer");
 
                             // inform the user that recording has stopped
 
                             isRecording = false;
                         } else {
-                            // initialize video camera
                             if (prepareVideoRecorder()) {
                                 // Camera is available and unlocked, MediaRecorder is prepared,
                                 // now you can start recording
@@ -92,6 +92,30 @@ public class CameraActivity extends BaseActivity {
                                 // inform user
                             }
                         }
+                    }
+                }
+        );
+
+        final Button textureButton = (Button) findViewById(R.id.button_texture);
+        textureButton.setOnClickListener(
+                new View.OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        Camera.Parameters params = mCamera.getParameters();
+                        if (isNegatif == 0){
+                            params.setColorEffect(Camera.Parameters.EFFECT_SEPIA);
+                            isNegatif = 1;
+                        }
+                        else if (isNegatif == 1){
+                            params.setColorEffect(Camera.Parameters.EFFECT_NEGATIVE);
+                            isNegatif = 2;
+                        }
+                        else if(isNegatif == 2){
+                            params.setColorEffect(Camera.Parameters.EFFECT_NONE);
+                            isNegatif = 0;
+                        }
+
+                        mCamera.setParameters(params);
                     }
                 }
         );
