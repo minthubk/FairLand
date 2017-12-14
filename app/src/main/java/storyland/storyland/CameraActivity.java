@@ -25,7 +25,7 @@ import java.util.List;
 
 import android.view.*;
 
-public class CameraActivity extends AppCompatActivity {
+public class CameraActivity extends BaseActivity {
 
     private static final String TAG = "VideoAR_storyLand";
     private Camera mCamera;
@@ -40,8 +40,8 @@ public class CameraActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_camera);
+        super.onCreate(savedInstanceState);
 
         // Create an instance of Camera
         mCamera = getCameraInstance();

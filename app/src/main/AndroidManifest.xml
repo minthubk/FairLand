@@ -29,6 +29,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ListeVideoActivity">
+
+        </activity>
+        <activity android:name=".EditionVideoActivity">
+
+        </activity>
     </application>
 
     <uses-permission android:name="android.permission.CAMERA" />

@@ -14,7 +14,7 @@ import android.widget.TextView;
 import android.view.Gravity;
 
 
-public class ListeVideoActivity extends AppCompatActivity {
+public class ListeVideoActivity extends BaseActivity {
 
 
     TableLayout table;
@@ -23,8 +23,8 @@ public class ListeVideoActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste);
+        super.onCreate(savedInstanceState);
 
         String[] listeVideo;
         //recupere tous les fichiers contenant un certain noms
