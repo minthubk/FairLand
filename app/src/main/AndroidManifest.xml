@@ -21,7 +21,10 @@
         </provider>
         <activity
             android:name=".MainActivity">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".CameraActivity"
@@ -29,10 +32,6 @@
             <!-- configure this activity to use landscape orientation -->
         </activity>
         <activity android:name=".ListeVideoActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity android:name=".EditionVideoActivity">
