@@ -53,6 +53,28 @@
                 android:layout_weight="1"
                 android:text="Colorie" />
 
+            <Button
+                android:id="@+id/button_effect"
+                android:layout_width="wrap_content"
+                android:layout_height="51dp"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_marginBottom="100dp"
+                android:layout_marginTop="40dp"
+                android:layout_weight="1"
+                android:text="Decor" />
+
+            <Button
+                android:id="@+id/button_filtre"
+                android:layout_width="wrap_content"
+                android:layout_height="51dp"
+                android:layout_alignParentBottom="true"
+                android:layout_gravity="center"
+                android:layout_marginBottom="160dp"
+                android:layout_marginTop="40dp"
+                android:layout_weight="1"
+                android:text="Visage" />
+
 
         </RelativeLayout>
 
