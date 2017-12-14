@@ -1,11 +1,17 @@
 package storyland.storyland;
 
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.nfc.NfcAdapter;
+import android.nfc.NfcEvent;
+import android.os.Build;
 import android.os.Bundle;
 import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 
 import java.lang.String;
@@ -26,6 +32,14 @@ import android.widget.VideoView;
 
 public class ListeVideoActivity extends BaseActivity {
 
+    // partage de videos
+    NfcAdapter mNfcAdapter;
+    // Flag to indicate that Android Beam is available
+    boolean mAndroidBeamAvailable  = false;
+    // List of URIs to provide to Android Beam
+    private Uri[] mFileUris = new Uri[10];
+    // Instance that returns available files from this app
+    private FileUriCallback mFileUriCallback;
 
     TableLayout table;
     TableRow row; // création d'un élément : ligne
@@ -36,9 +50,50 @@ public class ListeVideoActivity extends BaseActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_liste);
 
-        String[] listeVideo;
-        //recupere tous les fichiers contenant un certain noms
+        listeVideos();
 
+        //setUpNfc();
+    }
+
+    private void setUpNfc() {
+        // NFC isn't available on the device
+        if (Build.VERSION.SDK_INT <
+                Build.VERSION_CODES.JELLY_BEAN_MR1) {
+            // If Android Beam isn't available, don't continue.
+            mAndroidBeamAvailable = false;
+
+            // Android Beam file transfer is available, continue
+        } else {
+            mNfcAdapter = NfcAdapter.getDefaultAdapter(this);
+
+                    /*
+         * Instantiate a new FileUriCallback to handle requests for
+         * URIs
+         */
+            mFileUriCallback = new FileUriCallback();
+            // Set the dynamic callback for URI requests.
+            mNfcAdapter.setBeamPushUrisCallback(mFileUriCallback,this);
+        }
+    }
+
+    /**
+     * Callback that Android Beam file transfer calls to get
+     * files to share
+     */
+    private class FileUriCallback implements
+            NfcAdapter.CreateBeamUrisCallback {
+        public FileUriCallback() {
+        }
+        /**
+         * Create content URIs as needed to share with another device
+         */
+        @Override
+        public Uri[] createBeamUris(NfcEvent event) {
+            return mFileUris;
+        }
+    }
+
+    private void listeVideos() {
         File directory = new File(Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_PICTURES), "StoryLand");
 
         // Create the storage directory if it does not exist
@@ -97,6 +152,39 @@ public class ListeVideoActivity extends BaseActivity {
                         startActivity(intent);
                     }
                 });
+                tv2.setOnClickListener(new View.OnClickListener() {
+                    public void onClick(View view) {
+                        // It's index
+                        String text = ((TextView)((TableRow)view.getParent()).getChildAt(0)).getText().toString();
+                        String filename = Environment.getExternalStoragePublicDirectory( Environment.DIRECTORY_PICTURES)+"/StoryLand/"+text;
+                        Log.v("file", "ready to share " + filename);
+                        File file = new File(filename);
+
+                        Log.v("file_exists", String.valueOf(file.exists()));
+
+                        // Uri uri = Uri.parse(filename));
+                        Uri uri = FileProvider.getUriForFile(ListeVideoActivity.this,
+                                BuildConfig.APPLICATION_ID + ".provider",
+                                file);
+
+
+                        Intent intentShareFile = new Intent(Intent.ACTION_SEND);
+                        intentShareFile.setType("video/*");
+                        // intentShareFile.setType("application/pdf");
+                        //intentShareFile.putExtra(Intent.EXTRA_STREAM, Uri.parse("file://"+ filename));
+                        //intentShareFile.setDataAndType(uri, "video/*");
+                        intentShareFile.putExtra(Intent.EXTRA_STREAM, uri);
+                        intentShareFile.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+
+
+                        // intentShareFile.putExtra(MediaStore.EXTRA_OUTPUT, uri);
+
+                        //intentShareFile.putExtra(Intent.EXTRA_SUBJECT,"Sharing File...");
+                        //intentShareFile.putExtra(Intent.EXTRA_TEXT, "Sharing File...");
+
+                        startActivity(Intent.createChooser(intentShareFile, "Share File"));
+                    }
+                });
                 tv3.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View view) {
                         // It's index
@@ -110,12 +198,6 @@ public class ListeVideoActivity extends BaseActivity {
                         startActivity(intent);
                     }
                 });
-
-
-
-
-
-
                         /*Log.d("id",value);
                         String text = ((TextView) row.getChildAt(0)).getText().toString();
                         TextView textView = (TextView)(((TableRow)row)).getChildAt(0);

@@ -12,28 +12,27 @@
         android:logo="@drawable/logo">
         <provider
             android:name="android.support.v4.content.FileProvider"
-            android:authorities="com.example.android.fileprovider"
+            android:authorities="${applicationId}.provider"
             android:exported="false"
             android:grantUriPermissions="true">
             <meta-data
                 android:name="android.support.FILE_PROVIDER_PATHS"
-                android:resource="@layout/activity_main">
-            </meta-data>
+                android:resource="@xml/filepaths"/>
         </provider>
         <activity
             android:name=".MainActivity">
 
+        </activity>
+        <activity
+            android:name=".CameraActivity"
+        android:screenOrientation="sensorLandscape"><!-- Sensor destroy camera orientation-->
+            <!-- configure this activity to use landscape orientation -->
+        </activity>
+        <activity android:name=".ListeVideoActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity
-            android:name=".CameraActivity"
-            android:screenOrientation="sensorLandscape"><!-- Sensor destroy camera orientation-->
-            <!-- configure this activity to use landscape orientation -->
-        </activity>
-        <activity android:name=".ListeVideoActivity">
 
         </activity>
         <activity android:name=".EditionVideoActivity">
@@ -52,5 +51,10 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-feature android:name="android.hardware.location.gps" />
     <uses-feature android:name="android.hardware.camera" android:required="true" />
+    <!-- partage de fichiers -->
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-feature
+        android:name="android.hardware.nfc"
+        android:required="true" />
 
 </manifest>
