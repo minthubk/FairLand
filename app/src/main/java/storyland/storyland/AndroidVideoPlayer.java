@@ -25,7 +25,7 @@ public class AndroidVideoPlayer extends Activity implements SurfaceHolder.Callba
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_video);
 
         getWindow().setFormat(PixelFormat.UNKNOWN);
 

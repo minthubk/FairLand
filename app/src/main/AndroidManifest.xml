@@ -21,14 +21,17 @@
             </meta-data>
         </provider>
         <activity
-            android:name=".CameraActivity"
-            android:screenOrientation="sensorLandscape"><!-- Sensor destroy camera orientation-->
-            <!-- configure this activity to use landscape orientation -->
+            android:name=".MainActivity">
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity
+            android:name=".CameraActivity"
+            android:screenOrientation="sensorLandscape"><!-- Sensor destroy camera orientation-->
+            <!-- configure this activity to use landscape orientation -->
         </activity>
         <activity android:name=".ListeVideoActivity">
 

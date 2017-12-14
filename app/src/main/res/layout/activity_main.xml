@@ -4,13 +4,15 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="storyland.storyland.MainActivity">
+    tools:context="storyland.storyland.MainActivity"
+    android:background="@color/orange">
 
-    <VideoView
-        android:id="@+id/prendre_video"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        />
+    <ImageView
+        android:id="@+id/iv_background"
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:scaleType="fitCenter"
+        android:src="@mipmap/logo" />
 
 
 </android.support.constraint.ConstraintLayout>
