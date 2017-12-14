@@ -8,6 +8,7 @@ import java.lang.String;
 import java.io.File;
 
 import android.util.Log;
+import android.view.View;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -69,6 +70,15 @@ public class ListeVideoActivity extends BaseActivity {
                 row.addView(tv1);
                 row.addView(tv2);
                 row.addView(tv3);
+
+                tv1.setOnClickListener(new View.OnClickListener()
+                {
+                    @Override
+                    public void onClick(View v)
+                    {
+                        tv1.getText();
+                    }
+                });
 
                 // ajout de la ligne au tableau
                 table.addView(row);
