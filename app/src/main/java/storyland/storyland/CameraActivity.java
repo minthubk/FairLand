@@ -23,6 +23,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.aiyaapp.camera.sdk.AiyaEffects;
+
 import android.view.*;
 
 public class CameraActivity extends BaseActivity {
