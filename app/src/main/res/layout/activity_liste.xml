@@ -24,13 +24,6 @@
                 android:stretchColumns="0"
                 android:layout_height="wrap_content"
                 android:id="@+id/idTable">
-                <LinearLayout
-                    android:id="@+id/menu_insert"
-                    android:layout_centerInParent="true"
-                    android:layout_width="200dp"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal">
-                </LinearLayout>
 
                 <TextView
                     android:layout_width="wrap_content"

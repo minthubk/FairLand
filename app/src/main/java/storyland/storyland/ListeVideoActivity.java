@@ -23,8 +23,8 @@ public class ListeVideoActivity extends BaseActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        setContentView(R.layout.activity_liste);
         super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_liste);
 
         String[] listeVideo;
         //recupere tous les fichiers contenant un certain noms

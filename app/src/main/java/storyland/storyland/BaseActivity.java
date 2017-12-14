@@ -16,56 +16,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TableLayout;
 
+// classe qui rajoute le menu en haut à droite
 public class BaseActivity extends AppCompatActivity {
-    @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        Log.v("baseactivity", "add menu");
-        addMenu();
-    }
-
-    protected void addMenu() {
-        LayoutInflater inflater = (LayoutInflater) getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-        View menu = inflater.inflate(R.layout.menu, null);
-
-        // click listeners
-        menu.findViewById(R.id.prendre_video).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent homeIntent = new Intent(BaseActivity.this, CameraActivity.class);
-                startActivity(homeIntent);
-                finish();
-
-                Log.v("tab", "click sur prendre vidéo");
-            }
-        });
-        menu.findViewById(R.id.mes_videos).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent homeIntent = new Intent(BaseActivity.this, ListeVideoActivity.class);
-                startActivity(homeIntent);
-                finish();
-
-                Log.v("tab", "click sur mes vidéos");
-            }
-        });
-        menu.findViewById(R.id.edition_videos).setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent homeIntent = new Intent(BaseActivity.this, EditionVideoActivity.class);
-                startActivity(homeIntent);
-                finish();
-
-                Log.v("tab", "click sur edition vidéo");
-            }
-        });
-
-        // insert into main view
-        ViewGroup insertPoint = (ViewGroup) findViewById(R.id.menu_insert);
-        insertPoint.addView(menu, 0, new ViewGroup.LayoutParams(ViewGroup.LayoutParams.FILL_PARENT, ViewGroup.LayoutParams.FILL_PARENT));
-
-    }
-
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main, menu);
@@ -74,15 +26,23 @@ public class BaseActivity extends AppCompatActivity {
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        TableLayout menu = findViewById(R.id.menu);
-        int visibility = menu.getVisibility();
-
-        if (visibility == View.INVISIBLE) {
-            menu.setVisibility(View.VISIBLE);
-        } else {
-            menu.setVisibility(View.INVISIBLE);
+        switch (item.getItemId()) {
+            case R.id.prendre_video:
+                Intent priseVideoIntent = new Intent(BaseActivity.this, CameraActivity.class);
+                startActivity(priseVideoIntent);
+                finish();
+                return true;
+            case R.id.mes_videos:
+                Intent listeVideosIntent = new Intent(BaseActivity.this, ListeVideoActivity.class);
+                startActivity(listeVideosIntent);
+                finish();
+                return true;
+            case R.id.edition_videos:
+                Intent editionVideoIntent = new Intent(BaseActivity.this, EditionVideoActivity.class);
+                startActivity(editionVideoIntent);
+                finish();
+                return true;
         }
-
-        return true;
+        return super.onOptionsItemSelected(item);
     }
 }
