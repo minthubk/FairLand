@@ -1,6 +1,7 @@
 package storyland.storyland;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
 import android.net.Uri;
@@ -30,7 +31,7 @@ public class AndroidVideoPlayer extends Activity implements SurfaceHolder.Callba
         getWindow().setFormat(PixelFormat.UNKNOWN);
 
         //Displays a video file.
-        VideoView mVideoView = (VideoView)findViewById(R.id.prendre_video);
+        final VideoView mVideoView = (VideoView)findViewById(R.id.prendre_video);
 
         Bundle b = getIntent().getExtras();
         String value = ""; // or other values
@@ -40,6 +41,16 @@ public class AndroidVideoPlayer extends Activity implements SurfaceHolder.Callba
             mVideoView.setVideoURI(uri);
             mVideoView.requestFocus();
             mVideoView.start();
+
+            mVideoView.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+
+                @Override
+                public void onCompletion(MediaPlayer mp) {
+                    Intent listeVideosIntent = new Intent(AndroidVideoPlayer.this, ListeVideoActivity.class);
+                    startActivity(listeVideosIntent);
+                    finish();
+                }
+            });
         }
 
     }
