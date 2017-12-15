@@ -1,12 +1,15 @@
 package storyland.storyland;
 
+import android.content.Intent;
 import android.graphics.Rect;
+import android.graphics.drawable.Drawable;
 import android.hardware.Camera;
 import android.media.CamcorderProfile;
 import android.media.MediaRecorder;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
@@ -76,7 +79,8 @@ public class CameraActivity extends BaseActivity {
                             releaseMediaRecorder();
                             // release the MediaRecorder object
                             mCamera.lock();// take camera access back from MediaRecorder
-                            captureButton.setText("Démarer");
+                            Drawable bouton = ResourcesCompat.getDrawable(getResources(), R.drawable.bouton_camera_1, null);
+                            captureButton.setBackground(bouton);
 
                             // inform the user that recording has stopped
 
@@ -86,7 +90,8 @@ public class CameraActivity extends BaseActivity {
                                 // Camera is available and unlocked, MediaRecorder is prepared,
                                 // now you can start recording
                                 mMediaRecorder.start();
-                                captureButton.setText("Stop");
+                                Drawable bouton = ResourcesCompat.getDrawable(getResources(), R.drawable.bouton_camera_2, null);
+                                captureButton.setBackground(bouton);
 
                                 // inform the user that recording has started
                                 isRecording = true;
@@ -105,20 +110,21 @@ public class CameraActivity extends BaseActivity {
                 new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
+                        String[] effects = {
+                                Camera.Parameters.EFFECT_NONE,
+                                Camera.Parameters.EFFECT_AQUA,
+                                Camera.Parameters.EFFECT_BLACKBOARD,
+                                Camera.Parameters.EFFECT_MONO,
+                                Camera.Parameters.EFFECT_NEGATIVE,
+                                Camera.Parameters.EFFECT_POSTERIZE,
+                                Camera.Parameters.EFFECT_SEPIA,
+                                Camera.Parameters.EFFECT_SOLARIZE,
+                                Camera.Parameters.EFFECT_WHITEBOARD,
+                        };
                         Camera.Parameters params = mCamera.getParameters();
-                        if (isNegatif == 0){
-                            params.setColorEffect(Camera.Parameters.EFFECT_SEPIA);
-                            isNegatif = 1;
-                        }
-                        else if (isNegatif == 1){
-                            params.setColorEffect(Camera.Parameters.EFFECT_NEGATIVE);
-                            isNegatif = 2;
-                        }
-                        else if(isNegatif == 2){
-                            params.setColorEffect(Camera.Parameters.EFFECT_NONE);
-                            isNegatif = 0;
-                        }
 
+                        isNegatif = (isNegatif + 1) % effects.length;
+                        params.setColorEffect(effects[isNegatif]);
                         mCamera.setParameters(params);
                     }
                 }
@@ -131,6 +137,11 @@ public class CameraActivity extends BaseActivity {
         preview.addView(mPreview);
     }
 
+    public void onBackPressed() {
+        Intent homeIntent = new Intent(this, MenuActivity.class);
+        startActivity(homeIntent);
+        finish();
+    }
 
     public static Camera getCameraInstance(){
         Camera c = null;

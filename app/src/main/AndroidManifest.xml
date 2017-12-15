@@ -20,7 +20,8 @@
                 android:resource="@xml/filepaths"/>
         </provider>
         <activity
-            android:name=".MainActivity">
+            android:name=".MainActivity"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -28,13 +29,21 @@
         </activity>
         <activity
             android:name=".CameraActivity"
-        android:screenOrientation="sensorLandscape"><!-- Sensor destroy camera orientation-->
+            android:parentActivityName="storyland.storyland.MenuActivity"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"><!-- Sensor destroy camera orientation-->
             <!-- configure this activity to use landscape orientation -->
+        <!-- The meta-data element is needed for versions lower than 4.1 -->
+        <meta-data
+            android:name="android.support.PARENT_ACTIVITY"
+            android:value="storyland.storyland.MenuActivity" />
+
         </activity>
         <activity android:name=".ListeVideoActivity">
 
         </activity>
-        <activity android:name=".EditionVideoActivity">
+
+        <activity android:name=".MenuActivity">
 
         </activity>
         <activity android:name=".AndroidVideoPlayer">

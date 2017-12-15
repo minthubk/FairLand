@@ -106,10 +106,12 @@ public class ListeVideoActivity extends BaseActivity {
                 // paramètres de layout
                 LinearLayout.LayoutParams params = new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT,
                         TableRow.LayoutParams.WRAP_CONTENT);
+                int textSize = 11;
+
                 tv1 = new Button(this);
                 String value = files[i].getName();// création cellule
                 tv1.setText(value);
-                tv1.setTextSize(12);
+                tv1.setTextSize(textSize);
                 tv1.setId(100+i);// ajout du texte
                 tv1.setGravity(Gravity.CENTER); // centrage dans la cellule
 
@@ -121,10 +123,10 @@ public class ListeVideoActivity extends BaseActivity {
                 tv2 = new Button(this);
                 tv2.setLayoutParams(params);
                 tv2.setText("Share");
-                tv2.setTextSize(12);
+                tv2.setTextSize(textSize);
                 tv2.setId(200+i);
                 tv2.setGravity(Gravity.CENTER);
-                tv2.setCompoundDrawablesRelativeWithIntrinsicBounds(makeIcon(R.mipmap.bouton_partager, 90), null, null, null);
+                tv2.setCompoundDrawablesRelativeWithIntrinsicBounds(makeIcon(R.mipmap.bouton_partager, 60), null, null, null);
                 //tv2.setLayoutParams(new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
 
@@ -132,10 +134,10 @@ public class ListeVideoActivity extends BaseActivity {
                 tv3 = new Button(this);
                 tv3.setText("DELETE");
                 tv3.setLayoutParams(params);
-                tv2.setTextSize(12);
+                tv2.setTextSize(textSize);
                 tv3.setId(300+i);
                 tv3.setGravity(Gravity.CENTER);
-                tv3.setCompoundDrawablesRelativeWithIntrinsicBounds(makeIcon(R.mipmap.bouton_supprimer, 50), null, null, null);
+                tv3.setCompoundDrawablesRelativeWithIntrinsicBounds(makeIcon(R.mipmap.bouton_supprimer, 40), null, null, null);
                 //tv3.setLayoutParams(new TableRow.LayoutParams(0, android.view.ViewGroup.LayoutParams.WRAP_CONTENT, 1));
 
                 // ajout des cellules à la ligne

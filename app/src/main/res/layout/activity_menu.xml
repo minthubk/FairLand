@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="storyland.storyland.EditionVideoActivity"
+    android:background="@color/colorBackground">
+
+    <TableLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/menu"
+        android:layout_width="200dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:layout_centerInParent="true"
+        android:background="@color/colorMenu">
+        <TextView
+            android:text="MENU"
+            style="@style/Text"
+            android:gravity="center"/>
+        <View
+            android:layout_height="1dp"
+            android:background="#FF909090"
+            />
+        <TextView
+            android:id="@+id/prendre_video"
+            android:text="PRENDRE VIDEO"
+            style="@style/Text" />
+        <View
+            android:layout_height="1dp"
+            android:background="#FF909090"
+            />
+        <TextView
+            android:id="@+id/mes_videos"
+            android:text="MES VIDEOS"
+            style="@style/Text"/>
+    </TableLayout>
+</RelativeLayout >

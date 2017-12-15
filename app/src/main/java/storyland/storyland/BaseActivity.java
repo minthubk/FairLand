@@ -25,6 +25,11 @@ public class BaseActivity extends AppCompatActivity {
     }
 
 
+    public void onBackPressed() {
+        Intent homeIntent = new Intent(this, MenuActivity.class);
+        startActivity(homeIntent);
+        finish();
+    }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
@@ -37,11 +42,6 @@ public class BaseActivity extends AppCompatActivity {
             case R.id.mes_videos:
                 Intent listeVideosIntent = new Intent(BaseActivity.this, ListeVideoActivity.class);
                 startActivity(listeVideosIntent);
-                finish();
-                return true;
-            case R.id.edition_videos:
-                Intent editionVideoIntent = new Intent(BaseActivity.this, EditionVideoActivity.class);
-                startActivity(editionVideoIntent);
                 finish();
                 return true;
         }
